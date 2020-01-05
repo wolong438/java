@@ -1,0 +1,38 @@
+div  分区元素
+段落/标题/有序列表/无序列表/
+行内元素：行内块span，斜体i/em，加粗b/strong，删除线del，下划线u，换行br
+图片img，超链接a+src，锚点a+name  <label for="元素的id">..<label>等同操作
+单选框radio实现单选/多选框checkbox实现多选：都是使多个单选组件具有相同的name，值在value里面
+引用层叠样式表css的3种方式：外部引用/内联方式/内部定义
+js3中方式：。。。
+使无序列表的li无小圆点：list-style-type：none
+设置段落无样式：text-descoration：none
+行高：line-height
+文字对齐：text-align
+表格线单线：border-collapse:collapse;
+java类中的正则表达式以"..."包围，以match（）匹配，用group返回找到的值；js中的正则表达式以/.../包围，以test（）匹配，用exec()返回找到的值，（正则表达式匹配str，str匹配。。）
+arguments表函数的参数
+js8个内置对象：string，number，boolean，array，math，date，regexp，function 
+js2个外置对象：dom/bom（history/navigator相关信息/document/location/screen）
+4中查询节点的方式：id，name，tag，层次关系
+创建节点：var newnode=document.createElement(tagname);newnode.type=.. newnode.value=.. newnode.style.color=...
+添加节点：parentNode.appendchild（childnode）/pnode.insertbefore(cnode,renode)
+删除节点：pnode.removechild(cnode)
+创建对象3种方式：直接创建/构造器创建/json创建
+event获取事件源：event.srcElement  (IE)/event.Target   (firefox)
+取消时间冒泡：event.stopPropagation()/event.cancelBubble()=true
+ if(e.stopPropagation) {e.stopPropagation();} else {e.cancelBuddle();}
+jquery：一种js框架，轻量级js类库，核心是：写少做多
+jquery选择器类型：基本，层次，过滤，表单
+任意匹配：$("a,b,c,d")返回匹配abcd中任意一个的结果集，【或】
+层级选择：$("a b c d")返回a下的b的c的d             【交】 $(prev>child)所有子元素/$(prev+next)一个prev后面的元素/$(prev~siblings)所有prev后的元素
+：contains（text）/：empty（）/：has（tag）
+$("tag[attribute=value]").attr(..)
+:visible/:hidden
+:enable/:disable/:checked/:selected
+外部插入：a.append（b）将a插入到b内部最后/b.appendTo（a）把b插入到a中最后/prepend()最前/prependTo()最前
+外部插入：a.after(b)将b插入到a后/a.insertAfter(b)将a插入b后/a.before(b)....
+删除：a.empty()清空a节点内部内容/a.remove()移除a节点
+复制：a.clone()
+查找：a.children（。。。）/a.parent()/a.find（。。。）/a.next()/a.prev()/a.siblings()同辈元素
+动画：show（）/slidedown（）/fadein（）

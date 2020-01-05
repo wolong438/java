@@ -1,0 +1,41 @@
+spring本质是“管理" "软件中的对象"，即创建对象和管理对象之间的关系。
+spring的ioc机制和aop机制可以简化bean对象的创建和bean对象之间关系的解藕
+spring容器有2中：beanfactory，applicationcontext（继承自beanfactory接口）
+实例化容器：application ac=new ClassPathXmlAppliction(conf)
+实例化bean3种方法：  构造器（配置文件中指定bean的id或name，用于查找这个bean；指定bean的class，自动调用无参构造方法创建对象）
+			静态工厂/动态工厂
+bean的作用域：singleton（单例）/prototype（多例）/request/session/global session（全局）
+init-method/destory-method初始化或销毁回调方法
+IOC(控制反转inversion of control):指对象的获取方式发生了反转，由最初的new方式创建，转变为由第三方框架创建和注入。
+DI（依赖注入）：setter注入/构造器注入/自动装配（byname，bytype）
+方法形式：略
+注解形式：@Resource（setter）    @Autowired+@Qualifier（构造器，单例时qualifier可省略，自动按类型注入）    @Inject+@Named(需要javax-inject.jar包，同自动装配)   @Value（注入表达式）
+组建扫描：<context:component-scan base-package="..."/>
+注解扫描：<mvc:annotation-driven/>
+注解标记：  @componnet通用注解/@named通用注解/@Responsitory持久化层组件注解/@Service服务层组件注解/@Controller控制层注解
+指定作用域：默认singleton，使用其它作用域则用注解@Scope（“prototype等”）
+spring mvc
+m（model）：负责业务逻辑，包括“业务数据”和“业务处理逻辑”2层。
+v（view）：负责页面显示和用户交互，jsp，html
+c（controller）：m与v之间的桥梁，用于控制流程。
+核心组件：DispatherServlet（控制器，请求入口）
+	  HandlerMapping（控制器，请求派发）
+	  Controller（控制器，处理流程）
+	  ModelAndView（模型，封装业务处理的结果和视图）
+	  ViewResolver（视图，视图显示处理器）
+流程：浏览器向spring发送请求，请求交给前端控制器dispatherservlet处理
+	控制器通过handlermapping找到相应的controller组件按约定方法进行处理
+	约定方法处理后会返回一个modelandview对象，根据该对象调用viewresolve组件定位jsp并传递数据，生成响应结果页面
+接受请求参数：httpservletrequest.get。。。。/@Parameter/自动封装成bean
+向页面传值：HttpServletResponse.setAtt..../session.sett.../ModelAndView/ModelMap/@ModelAttritute
+重定向视图：modelandview  redirectview（“login.do”）/string redirect:"login.do"
+拦截器：实现Handlerinterceptor接口或HandlerinterceptorAdapter适配器，3方法：preHandle（true/false） postHandle（）   afterComplettion（）
+spring对dao编写支持：jdbcTemplate封装了常用的jdbc方法，HibernateTemplate封装了常用的。。。
+			jdbcDaoSupport   jdbc数据访问对象的基类，hibernateSupport  。。。。 dao继承_ _support通过getTemplate（）获得template对象。提供参数dataSource可实例化template。
+mybatis体系结构：加载配置，解析sql，sql执行，结果映射
+mybatis执行过程：    数据库连接配置文件+sql语句映射文件
+			建立SqlSessionFactoryBuilder
+			SqlSessionFactory=...Builder.build(连接文件流)
+			SqlSession=...Factory.openSession()
+			SqlSession.insert(..)
+			SqlSession.close()

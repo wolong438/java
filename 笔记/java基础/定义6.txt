@@ -1,0 +1,59 @@
+ajax:异步的js和xml
+ajax发送异步请求步棸：
+	1.获取ajax对象,xmlHttpRequest对象
+	2.设置回调函数，为对象的onreadystatechange事件设定响应函数
+	3.创建请求，调用xmlHttpRequest对象的open方法
+	4.发送请求，调用对象的send方法
+1.if（window.xmlhttprequest）{xhr=new xmlhttprequest();}else{xhr=new ActiveXObject('Microsoft.XMLHttp');}
+2.if(xhr.readystatus==4&&xhr.status==200){var text=xhr.responseText();}
+3.xhr.open('get','url',true)
+  xhr.open('post','url',true)->xhr.setRequestHeader('context-type','application/x...')
+4.xhr.send(null)
+  xhr.send(name=value)
+json:一种数据交换格式，2种结构：键值对集合，值的有序列表
+json字符串->js对象：eval（“（“+str+”）”）/JSON.parse(str)
+java对象->json字符串：JSONObject.fromObject(obj).toString()
+jquery对ajax的支持：$obj.load（'url',参数）、$get（url，请求参数,function，datetype）、$。ajax（{。。。}）
+hibernate
+orm思想：对象关系映射（java对象与数据库的映射）
+生成主键：sequence（适用于oracle），identity（适用于其它数据库），native（根据数据库方言自动选择）
+使用步棸：
+1.导入hibernate包和数据库驱动包
+2.导入朱配置文件hibernate。cfg。xml
+3.创建实体类
+4.创建映射文件
+5.执行sql语句
+配置文件格式
+<hibernate-configuration>
+   <session-factory>
+	<property name="connection.url">url</property>
+	...connection.username......
+	...connection.password....
+	...connection.driver_class
+	<property name="dialect">....</property>方言
+	<property name="show_sql">true</property>打印sql语句
+	<property name=“format_sql”>true</property>sql输出格式化
+	<!--声明映射关系文件 -->
+	<mapping resource="com/tarena/entity/Emp.hbm.xml" />
+   </session-factory>
+</hibernate-configuration>
+配置映射关系
+<hibernate-mapping>
+  <class name="com.tarena.entity.Emp" table="emp">
+	<property name="name" type="java.lang.String" column="name"/>
+	。。。
+  </class>
+<hibernate-mapping>
+创建工具类
+static {
+	// 加载Hibernate主配置文件
+	Configuration conf = new Configuration();
+	conf.configure("/hibernate.cfg.xml");
+	sessionFactory = conf.buildSessionFactory();
+	}
+public static Session getSession() {
+	returnsessionFactory.openSession();
+	}
+// 开启事务
+Transaction ts = session.beginTransaction();
+新增session.save（obj）/查询session.get(emp.class,id)/修改update（obj）/删除delete(obj)、查询全部query query=session.createquery("from emp") query.list()

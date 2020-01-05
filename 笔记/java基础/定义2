@@ -1,0 +1,95 @@
+文件管理方式：手工管理，文件管理，数据库管理
+数据库：按照数据结构来组织、存储和管理数据的仓库
+特征：数据的结构化，数据间的共享，数据的独立性
+关系型数据库：使用关系模型把数据组织到数据表(Table)中
+表的描述
+sql：结构化查询语言
+得到时间：to_date('2015-1-2','yyyy-mm-dd');
+得到字符：to_char('sysdate');
+字符操作
+	连接字符串：concat（char1，char2）或||    注：concat只能连接2个字符串
+	length（字段）：字符串的长度
+	Lower（char）小写    Upper（char）  initcap（char）首字母大写
+	trim（c2 from c1）从c1左右中截去c2   Ltrim（c1[c2]）  Rtrim(c1[c2])
+	Lpad(c1,n,c2) 用c2给c1左补足n位      Rpad（c1，n，c2）  用c2给c1右补足n位
+数值操作
+	round（n[,m]）对数字n按m位进行四舍五入   trunc（n[,m]）对数字n按照m进行截取
+	mod（n，m）对数字n按m取模
+	ceil(n)天花板，大于等于n的最小整数        floor（n）小于等于n的最大整数
+日期操作（date固定7个字节）
+	timestamp(n)   当n=7时，表示date的时间戳
+	sysdate 	   得到系统时间
+	last_day(date) 当月最后一天
+	add_months(date,n)加n个月
+	months_between(date1,date2) date1-date2的月份差
+	next_day(date,n)  n属于1-7，返回下一个周几的日子
+	least（d1，d2）最小/greatest(d1,d2)最大
+	extract（year from sysdate）提取元素
+控制操作
+	nvl（列名，值）空值转化
+	nvl2(列名，值1，值2) 非空取1空取2
+当查询条件中和数字比较，可以使用单引号引起，也可以不用，当和字符及日期类型的数据比较，则必须用单引号引起
+查询条件限制：in 在枚举范围内  between a and b 在连续范围a和b之间
+排序时null视作最大   多列排序时，为没列单独设置排序方式
+聚合函数（分组函数）：将表的全部数据划分为几组数据，每组数据统计出一个结果    group by    having
+连接查询：查询两个或两个以上数据表或视图的查询叫做连接查询
+内连接：返回两个表中所有满足连接条件的数据记录
+外连接：不仅返回两个表中所有满足连接条件的数据记录，还要返回那些不满足连接条件的记录
+	left outer join on/right outer join on/full outer join on
+自连接：关联关系来自于单表的多列
+子查询:为了给查询提供数据而首先执行的查询语句
+伪列：rownum，用来返回标识行数据顺序的数字
+decode（列名1，char1,do,char2,do2,char3,do3,列名2）
+视图及作用以及约束（检查，只读），查看视图名称，查看指定视图，复杂视图不允许进行dml操作
+序列：一种用来生成唯一数字值的数据库对象   （2函数）
+索引：一种允许直接访问数据表中的某一数据行的树形结构
+	优点：数据库系统自动维护，查询时不必指定索引，提高查询效率（2函数，重建和删除）
+约束：约束条件或者完整性约束条件，是数据表上强制执行的一些校验规则 （5大约束和3中添加约束的方法）
+	优点：保证数据的完整性和数据间商业逻辑
+jdcb：java数据库连接的解决方案  （jdbc接口及访问数据库5步流程）
+	建立连接2种方式
+连接池：是创建和管理连接的缓冲池技术，将连接准备好被任何需要它们的应用使用（commons-dbcp包和commons-pool包）
+preparestatement作用：预防sql注入和提高效率
+可滚动结果集参数：statement（type，concurrency）
+conllection事务：设置自动提交，提交
+数据库批处理：addBath（）/executeBath()/clearBath()
+获得自动主键
+Dao：数据访问对象，是建立在数据库和业务层之间，封装所有对数据库的访问
+目的：数据访问逻辑和业务逻辑分开
+1. 一个DAO工厂类；
+2. 一个DAO接口；
+3. 一个实现DAO接口的具体类；
+4. 数据传递对象（实体对象（Entity）或值对象（Value Object，简称VO））.
+
+
+
+
+
+
+
+
+
+
+
+
+
+pagecontext requset session response application  config out exception page  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+request session response pagecontext——，out—— application—— config—— page—— exception——
+
+	

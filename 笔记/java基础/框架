@@ -1,0 +1,25 @@
+struts框架
+	struts基于servlet和jsp技术
+	重点在cotroller
+	采用fileter实现（特殊的servlet）
+	类级别的拦截，一个request会创建一个action，属性参数由多个方法共享
+spring框架
+	spring基于javabean技术
+	重点在于model（bean工厂）
+	采用servlet实现
+	方法级别的拦截，一个request对应一个方法，属性参数由一个方法独享
+	IOC（控制反转，java类中的对象创建交给spring容器，当类需要对象时，容器把对象注入java类）
+struts2与spring整合（借助struts2-spring-plugin插件）
+	让action自动装配spring容器中的bean
+	让spring管理应用中的action
+	--------------------------------------
+	spring创建所有的action和result
+	struts创建action实例后，spring将组件注入对象（用拦截器完成自动装配）
+	方法一.spring使用前要初始化（ContextLoaderListener自动查找web应用下的web-inf下的applicationContext.xml,并创建spring容器）
+	方法二.采用load-on-startup servlet创建applicationContext
+	加载顺序：context-param->listener->filter->servlet
+spring与mybatis整合（借助spring-mybatis包）
+	1.创建数据源（datasource）
+	2.创建sql会话（sqlsession=datesource+mapper.xml）
+	3.创建mapperbean(mapperbean=sqlsesseion+mapperigvnterface)
+	

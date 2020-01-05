@@ -1,0 +1,97 @@
+进程:
+线程：一个包含有内存入口地址，出口地址和能够顺序执行的代码序列。
+区别：调度：进程是系统进行资源分配和调度的一个独立单位；线程是cpu调度和分派的基本单位，比进程更小的能独立运行的基本单位。
+并发：微观上所有进程和线程是走走停停的，宏观上都在运行，这种都运行的现象。
+同步：先后顺序执行，你干完我在干
+异步：并发执行，各干个的
+锁机制->原子性
+线程运行状态：new->runnable->running/bloked->dead
+sleep(long ms)阻塞   yield回到就绪状态  join等待当前线程结束  wait/notify
+vector和hashtable线程安全     arraylist和hashmap不是线程安全的（解决方法：Collection.synchronizedMap()/Collection.synchronizedList()获取线程安全集合）
+抽象数据类型：将不同类型的数据的集合组合成整体用来描述新的事物。
+抽象类的意义：为子类提供公共的类型（父类的引用指向子类），封装重复的代码，定义抽象方法
+抽象类vs接口：3
+类：类定义了一种抽象数据类型，不但定义了抽象数据类型的组成（成员变量），还定义了对该类性的操作（方法）
+构造方法：类创建对象时需使用构造方法,以便给类所创建的对象一个合理的初始状态。
+面向对象：
+    特点：多态，封装，继承
+线程池作用：控制线程数量和重用线程 
+对象的创建（实例化）：分配属性空间（父类，子类，默认值），初始化父类属性，调用父类构造方法，初始化子类属性，调用子类构造方法
+	注：创建父类对象->创建子类对象
+	栈：基本数据类型,对象的引用，局部变量
+	堆：引用数据类型，对象
+	方法区：代码区，静态代码区，常量池（字符串，常量，类名，方法名）
+对象创建再空间里的变化：
+	Dog dog=new Dog()
+	new Dog()--->在堆内存中开辟空间存放Dog对象
+	Dog dog----->在栈内存中开辟Dog类型引用变量来指向Dog对象
+内存泄露：不再被使用的内存没有被及时回收（强制回收：system.gc()）
+局部变量vs成员变量（值，位置，生命周期）
+泛化：多个子类继承父类，这些子类可以共享父类的数据
+继承本质：实例化过程"加载类->分配属性空间->初始化父类->父类构造方法->初始化子类->子类方法"
+			执行static修饰的代码块
+			给属性分配内存空间
+			执行父类普通代码块，初始化属性
+			执行父类构造方法，初始化属性
+			若子类含有父类属性，则子类属性覆盖父类属性，否则，共享父类属性
+			执行子类普通代码块，初始化属性
+			执行子类构造方法，初始化属性
+重载：同一个类内，多个方法方法名相同，参数列表不同（编译时绑定）
+重写：父类中的一个方法与本类中的一个方法，这两个方法的方法名及参数列表放回值类型都相同（运行时绑定，访问权限必须大于被重写方法的访问权限）
+xml：可扩充标记语言，大小写敏感，简化数据的存储和共享
+<![CDATA[文本内容]]>
+SAX解析xml：一边扫描一边解析，可在解析文档的任意时刻停止解析
+优点：解析可以立即开始，速度快，没内存压力
+缺点：不能对节点进行修改
+SAXReader reader=new SAXRreader();
+Document doc=reader.read(new File(filename));
+DOM解析xml：把文档解析成node节点
+优点：树形结构，可遍历和修改节点
+缺点：如果文件比较大，内存压力大，解析时间长
+Document doc=readXML("build.xml");
+Element root=doc.getRootElement();
+root.element()/root.elements()/root.getName()/root.getText()/attribute.getName()/attribute.gevalue()
+创建document对象
+DocumentHelper.createDocument()
+增加节点
+doc.addElement("project");
+doc.addAttribute(string,value);
+将document写入文档
+XMLWriter w=new XMLWriter();
+FileOutputStream fos = new FileOutputStream("builder.xml");
+writer.setOutputStream(fos);
+writer.write(doc)
+JDBC高级编程
+事务：数据库保证交易可靠的机制。
+特性：原子性，一致性，隔离性，持久性
+Calendar
+	Calendar ca=Calendar.getInstance();
+	ca.add(Calendar.Month,1);
+	ca.get(Calendar.Month);
+	ca.getActualMaximum(Calendar.Day_Of_Month);
+	ca.getTime();时间戳
+Collection
+集合：一种可以存储一组数据的数据结构
+集合转数组：String[] s=list.toArray(new String[]{});
+数据转集合：List<E> list=Arrays.asList(s);
+比较大小：实现Comparable接口的compareTo(Object o)
+	   实现Comparator接口的compara(Object A,Object B)
+队列Quene:Quene<Object> quene=new ArrayList<Object>();   ArrayList实现了Quene接口
+	    进队：offer     出队不删除：peek    出对删除：poll
+双向队列：DeQuene
+栈Stack:Dequene<Object> dequene=new LinkedList<Object>()
+	    进栈：push       出栈：pop
+utf-8编码：可变长编码方式，1～4个字节表示一个字符（二进制）数字和英文（1字节），汉字（多数占3字节）
+unicode编码：2字节存储一字符（十六进制，java默认使用unicode编码）
+asc编码：128个字符
+正则表达式：描述一个字符串的格式规则，然后用这个规则去匹配某个字符串看是否满足格式要求
+writeInt(3),往文件里写入整数3的字节数组（占4个字节）
+write(3),往文件里写数字3（占1个字节）
+节点流：可以对特定的一个节点进行读写数据
+处理流：对已存在的流的连接和封装，通过封装的流的功能调用实现读写数据
+对象序列化：将对象转化为字节序列
+流转化：outputstreamWriter（outputStream,"utf-8"）
+c/s模型描述
+InetAddress方法
+tcp与udp过程
+

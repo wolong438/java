@@ -1,0 +1,43 @@
+servlet文件结构：项目名->web-inf->web.xml+classes->包名->字节码文件
+get发送请求： 请求参数会显示在url中，安全性低
+		发送数据量小，小于2kb
+		把表单数据编码到url中传输
+post发送请求：把表单数据放在header中传输
+		传输数据量大
+		安全性高
+servlet运行步骤：
+浏览器依据IP建立与容器的连接
+浏览器将请求数据打包
+容器解析请求数据包，封装request和response对象
+容器依据请求资源路径找到Servlet创建对象
+容器将request和response对象作为参数传入service方法，并调用
+容器将响应数据打包发给浏览器
+浏览器取出结果，生成页面
+获取请求参数：getParameter(name)字符串/getParameterValues(name)字符串数组
+id属性一般是作为客户端区分控件的标识，name属性是服务器端区分各控件的标识
+重定向:浏览器接受到响应时立即又发出请求的过程
+转发：web组件将未完成的处理通过容器交给其它组建来继续完成的过程
+区别：转发所涉及的各个Web组件会共享同一个request和response对象；而重定向不行。
+      转发之后，浏览器地址栏的地址不变，重定向会变
+      转发的地址必须是同一个应用内部某个地址，而重定向没有这个限制
+匹配servlet规则：精匹配/通配符匹配/后缀匹配
+servlet生命周期的四阶段：实例化，初始化，就绪，销毁
+servlet上下文作用：
+在Web应用范围内存取共享数据:如 setAttribute(),getAttribute()
+访问Web应用的静态资源：如getRealPath(String path)
+跨多个请求、用户和Servlet
+JSP（Java Server Page）是一种服务器端动态页面技术的组件规范，jsp文件中包含html静态标记用于表现页面，也可以包含特殊代码，用来生成动态内容
+jsp3中常用指令：page（pageEncode，contextType），include，taglib
+异常处理：编程式异常处理（转发到错误页面），声明式异常处理（错误页面配置）
+相对路径：指的是相对于当前位置，为了到达目标文件要经过的路径
+绝对路径：从一个固定的点出发，然后构建到达目标文件所需要经过的路径
+状态管理：客户端的cookie，服务端的session 
+比较：cookie保存的简单少量的信息，session可以保存复杂大量的信息/session安全，保存在服务端和cookie不安全，保存在客户端/cookie不影响服务端性能，session影响服务器性能
+cookie.setMaxAge(秒)/cookie.setpath()/Cookie c = new Cookie("city",URLEncoder.encode("北京","utf-8"));/String s=URLDecoder.decode("北京","utf-8")
+只有当访问的地址是Cookie的路径或者其子路径时，浏览器才发送Cookie到服务器端。
+session.getAttrabute(..)/session.setAttrabute(..)/session.removeAttrabute(..)/session.invalidate()
+Bean：指的是一个公共的类，按照固定的方式提供属性的get/set访问方式
+el找寻顺序：pageContext、request、session、application
+${对象名.属性名}/${对象名[“属性名”]}
+jstl标签：if，choose，foreach
+自定义标签：继承SimpleTagSupport，重写doTag（），在web-inf下建立tld文件
